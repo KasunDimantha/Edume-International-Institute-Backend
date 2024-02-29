@@ -2,11 +2,11 @@ const mongoose = require('mongoose')
 
 
 const dbAdminSchema = new mongoose.Schema({
-    adminID: String,
-    fullName: String,
+    id: String,
+    fname: String,
     email: String,
-    contactNo: String,
-    password: String
+    cnumber: String,
+    password: String,
 })
 
 const DBAdminModel = mongoose.model("dbAdmin", dbAdminSchema)
