@@ -1,26 +1,45 @@
+require('dotenv').config()
 const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
 
-const admin = require('./routes/Admin');
-const teacher = require('./routes/Teacher');
-const student = require('./routes/Student');
-const course = require('./routes/Courses');
 
+const userRoutes = require('./routes/User');
+//const adminRoutes = require('./routes/Admin');
+//const teacherRoutes = require('./routes/Teacher');
+//const studentRoutes = require('./routes/Student');
+//const courseRoutes = require('./routes/Courses');
+
+//express app
 const app = express();
-app.use(express.json());
 app.use(cors());
 
 
-mongoose.connect("mongodb+srv://kasundimantha97:kasunEDUME97@cluster0.ook2x8c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+// midlware
+app.use(express.json());
 
-
-app.use('/Admin', admin);
-app.use('/Teacher', teacher);
-app.use('/Student', student);
-app.use('/Course', course);
-
-
-app.listen(3002, () => {
-    console.log("server is running")
+app.use((req, res, next) => {
+    console.log(req.path, req.method);
+    next()
 })
+
+
+
+app.use('/User', userRoutes);
+//app.use('/Admin', adminRoutes);
+//app.use('/Teacher', teacherRoutes);
+//app.use('/Student', studentRoutes);
+//app.use('/Course', courseRoutes);
+
+// connect to db
+mongoose.connect(process.env.MONG_URL)
+    .then(() => {
+        // listen for requests
+        app.listen(process.env.PORT, () => {
+            console.log("server is running")
+        })
+    })
+    .catch((error) => console.log(error))
+
+
+
