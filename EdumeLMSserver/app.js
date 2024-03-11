@@ -7,7 +7,7 @@ const cors = require("cors")
 const userRoutes = require('./routes/User');
 //const adminRoutes = require('./routes/Admin');
 //const teacherRoutes = require('./routes/Teacher');
-//const studentRoutes = require('./routes/Student');
+const studentRoutes = require('./routes/Student');
 //const courseRoutes = require('./routes/Courses');
 
 //express app
@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 app.use('/User', userRoutes);
 //app.use('/Admin', adminRoutes);
 //app.use('/Teacher', teacherRoutes);
-//app.use('/Student', studentRoutes);
+app.use('/Student', studentRoutes);
 //app.use('/Course', courseRoutes);
 
 // connect to db
