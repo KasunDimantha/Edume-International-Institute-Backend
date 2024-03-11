@@ -5,6 +5,7 @@ const cors = require("cors")
 const admin = require('./routes/Admin');
 const teacher = require('./routes/Teacher');
 const student = require('./routes/Student');
+const course = require('./routes/Courses');
 
 const app = express();
 app.use(express.json());
@@ -15,8 +16,9 @@ mongoose.connect("mongodb+srv://kasundimantha97:kasunEDUME97@cluster0.ook2x8c.mo
 
 
 app.use('/Admin', admin);
-app.use('./Teacher', teacher);
+app.use('/Teacher', teacher);
 app.use('/Student', student);
+app.use('/Course', course);
 
 
 app.listen(3002, () => {
