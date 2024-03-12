@@ -1,46 +1,49 @@
 const express = require('express');
 const router = express.Router();
-const StudentModel = require('../models/dbStudent')
+
+// controller function
+const {
+    createStudent,
+    getAllStudents,
+    getStudent,
+    getStudentByPayment,
+    getStudentByCourse,
+    getStudentBySemester,
+    getStudentByModule,
+    updateStudent,
+    deleteStudent
+} = require('../controllers/studentController')
+//const requireAuth = require('../middleware/requireAuth')
 
 
-router.post('/register', (req, res) => {
-    StudentModel.create(req.body)
-    .then(student => res.json(student))
-    .catch(err => res.json(err))
-})
+// require auth for all student routes
+//router.use(requireAuth)
 
-router.post('/update', (req,res) => {
-    
-})
+// post new student data
+router.post('/', createStudent)
 
-router.post("/login", (req, res) => {
-    const {email, password} = req.body;
-    StudentModel.findOne({email})
-    .then(user => {
-        if (user) {
-            if (user.password === password) {
-                res.json("Success")
-            } else {
-                res.json("Password is incorect")
-            }
-        } else {
-            res.json("user not exist")
-        }
-    })
-})
+// get all student data
+router.get('/', getAllStudents)
 
-router.get('/fStudent', (req, res) => {
-    const {email} = req.body;
-    StudentModel.find()
-    .then(students => res.json(students))
-    .catch(err => res.json(err))
-})
-router.get('/getStudent/:email', (req, res) => {
-    const email = req.params.email;
-    console.log(email)
-    StudentModel.findOne({email})
-    .then(students => res.json(students))
-    .catch(err => res.json(err))
-  });
+// get student by payment
+router.get('/:payment', getStudentByPayment)
+
+// get student by course
+router.get('/:course', getStudentByCourse)
+
+// get students by semester
+router.get('/:semester', getStudentBySemester)
+
+// get student by module
+router.get('/:module', getStudentByModule)
+
+// get a singe student data
+router.get('/:id', getStudent)
+
+// update a student data
+router.patch('/:id', updateStudent)
+
+// delete a student data
+router.delete('/:id', deleteStudent)
 
 module.exports = router;

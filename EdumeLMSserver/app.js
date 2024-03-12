@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 
 
+const userlsRoutes = require('./routes/UserLS');
 const userRoutes = require('./routes/User');
 //const adminRoutes = require('./routes/Admin');
 //const teacherRoutes = require('./routes/Teacher');
@@ -24,7 +25,7 @@ app.use((req, res, next) => {
 })
 
 
-
+app.use('/UserLS', userlsRoutes);
 app.use('/User', userRoutes);
 //app.use('/Admin', adminRoutes);
 //app.use('/Teacher', teacherRoutes);

@@ -2,21 +2,18 @@ const express = require("express")
 
 // controller function
 const {
-    signupUser,
-    loginUser,
     getAllUser,
     getUser,
     deleteUser,
     updateUser
 } = require('../controllers/userController')
+const requireAuth = require('../middleware/requireAuth')
 
 const router = express.Router()
 
-// login route
-router.post('/login', loginUser)
+// require auth for all user routes
+router.use(requireAuth)
 
-//signup route
-router.post('/signup', signupUser)
 
 // get all student/teacher/admin(seperatlly)
 router.get('/:role', getAllUser)
