@@ -9,7 +9,8 @@ const userRoutes = require('./routes/User');
 //const adminRoutes = require('./routes/Admin');
 //const teacherRoutes = require('./routes/Teacher');
 const studentRoutes = require('./routes/Student');
-//const courseRoutes = require('./routes/Courses');
+const courseRoutes = require('./routes/Courses');
+const semesterRoutes = require('./routes/Semester')
 
 //express app
 const app = express();
@@ -30,7 +31,8 @@ app.use('/User', userRoutes);
 //app.use('/Admin', adminRoutes);
 //app.use('/Teacher', teacherRoutes);
 app.use('/Student', studentRoutes);
-//app.use('/Course', courseRoutes);
+app.use('/Course', courseRoutes);
+app.use('./Semester', semesterRoutes);
 
 // connect to db
 mongoose.connect(process.env.MONG_URL)

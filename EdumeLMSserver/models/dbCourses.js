@@ -1,14 +1,13 @@
 const mongoose = require('mongoose')
 
 const dbCourseSchema = new mongoose.Schema({
-    id: {type:String, required: true},
-    cname: {type: String, required: true},
-    category: {type: String, required: true},
-    description: {
-        about: {type: String},
-        outcomes: {type: String},
-        modules: {type: String},
-        duration: {type: String},
+    course_name: {type: String, required: true},
+    course_category: {type: String, required: true},
+    course_description: {
+        course_about: {type: String},
+        course_outcomes: {type: String},
+        course_modules: {type: String},
+        course_duration: {type: String},
     }
 })
 

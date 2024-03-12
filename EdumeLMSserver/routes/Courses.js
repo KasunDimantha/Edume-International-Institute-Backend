@@ -1,18 +1,32 @@
 const express = require('express');
+const {
+    createCourse,
+    getAllCourses,
+    getCourse,
+    updateCourse,
+    deleteCourse
+} = require('../controllers/coursesController')
+const requireAuth = require('../middleware/requireAuth')
+
+
 const router = express.Router();
-const CourseModel = require('./models/dbCourses');
 
+// require auth for all workout routes
+router.use(requireAuth)
 
-router.post('/register', (req, res) => {
-    CourseModel.create(req.body)
-    .then(student => res.json(student))
-    .catch(err => res.json(err))
-})
+// Add new course
+router.post('/', createCourse)
 
-router.get('/allcourse', (req, res) => {
-    CourseModel.find()
-    .then(course => res.json(course))
-    .catch(err => res.json(err))
-})
+// get all course
+router.get('/', getAllCourses)
+
+// get a single course
+router.get('/:id', getCourse)
+
+// Update course
+router.patch('/:id', updateCourse)
+
+// Delete course
+router.delete('/:id', deleteCourse)
 
 module.exports = router;
