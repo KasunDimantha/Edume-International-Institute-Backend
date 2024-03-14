@@ -58,7 +58,7 @@ const getModulebySemester = async (req, res) => {
 
     try {
         
-        const module = await Module.findById({semester_id: id}); 
+        const module = await Module.find({semester_id: id}); 
         res.status(200).json(module)
     } catch (error) {
         res.status(400).json({ message: error.message })

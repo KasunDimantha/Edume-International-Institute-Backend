@@ -27,14 +27,17 @@ const getAllStudents = async (req, res) => {
 // get a singe student data
 const getStudent = async (req,res) => {
     const { id } = req.params
+    console.log(req.params)
 
     try {
-        const student = await Student.findById({student_id: id})
+        const student = await Student.find({student_id: req.params})
         res.status(200).json(student)
     } catch (error) {
         res.status(400).json({ message: error.message })
     }
 }
+
+
 
 // get student by payment
 const getStudentByPayment = async (req, res) => {
@@ -56,6 +59,7 @@ const getStudentByCourse = async (req, res) => {
 
     try {
         const student = await Student.find({'course.course_name': course})
+        console.log(student)
         res.status(200).json(student)
     } catch (error) {
         res.status(400).json({ message: error.message })

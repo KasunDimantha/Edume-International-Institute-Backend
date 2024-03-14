@@ -50,27 +50,27 @@ const getAllUser = async (req, res) => {
     res.status(200).json(users)
 }
 
+const getAll = async (req, res) => {
+    const users = await User.find({}).sort({createdAt: -1})
+
+    res.status(200).json(users)
+}
+
 
 // get a single student/teacher/admin
 const getUser = async (req, res) => {
-    const { id } = req.params
+    const {id} =  req.body
+    console.log(req.body)
+    const users = await User.find({_id: req.body})
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error: 'No such user'})
-    }
-    
-    const user = await User.findById(id);
-
-    if (!user) {
-        return res.status(404).json({error: 'No such user.'})
-    } 
-    res.status(200).json(user)
+    res.status(200).json(users)
 }
 
 
 // delete a student/teacher/admin
 const deleteUser = async (req, res) => {
     const { id } = req.params
+    console.log(id)
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({error: 'No such user'})
@@ -111,5 +111,6 @@ module.exports = {
     getAllUser,
     getUser,
     deleteUser,
-    updateUser
+    updateUser,
+    getAll
 }

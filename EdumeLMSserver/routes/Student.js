@@ -11,7 +11,7 @@ const {
     getStudentBySemester,
     getStudentByModule,
     updateStudent,
-    deleteStudent
+    deleteStudent,
 } = require('../controllers/studentController')
 //const requireAuth = require('../middleware/requireAuth')
 
@@ -24,6 +24,7 @@ router.post('/', createStudent)
 
 // get all student data
 router.get('/', getAllStudents)
+
 
 // get student by payment
 router.get('/:payment', getStudentByPayment)

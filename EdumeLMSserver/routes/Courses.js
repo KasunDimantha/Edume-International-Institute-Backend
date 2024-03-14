@@ -6,13 +6,13 @@ const {
     updateCourse,
     deleteCourse
 } = require('../controllers/coursesController')
-const requireAuth = require('../middleware/requireAuth')
+//const requireAuth = require('../middleware/requireAuth')
 
 
 const router = express.Router();
 
 // require auth for all workout routes
-router.use(requireAuth)
+//router.use(requireAuth)
 
 // Add new course
 router.post('/', createCourse)
